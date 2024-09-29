@@ -53,10 +53,10 @@ resource "azurerm_network_security_rule" "allow_load_balancer" {
   priority                    = 101
   direction                   = "Inbound"
   access                      = "Allow"
-  protocol                    = "*"
+  protocol                    = "Tcp"
   source_port_range           = "*"
+  source_address_prefix       = "*"
   destination_port_range      = "80"
-  source_address_prefix       = "AzureLoadBalancer"
   destination_address_prefix  = "10.0.1.0/24"
   network_security_group_name = azurerm_network_security_group.nsg.name
   resource_group_name         = data.azurerm_resource_group.rg.name

@@ -1,0 +1,47 @@
+{
+  "properties": {
+    "displayName": "Deny the creation of resources that do not have tags",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "metadata": {
+      "createdBy": "e5135f2a-edcd-4c9d-a497-f2bbd1b0a92d",
+      "createdOn": "2024-09-29T07:04:35.0623692Z",
+      "updatedBy": null,
+      "updatedOn": null
+    },
+    "version": "1.0.0",
+    "parameters": {
+      "tagName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "environment",
+          "description": "Name of the tag, such as 'environment'"
+        },
+        "defaultValue": "environment"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "field": "[concat('tags[', parameters('tagName'), ']')]",
+        "exists": "false"
+      },
+      "then": {
+        "effect": "deny"
+      }
+    },
+    "versions": [
+      "1.0.0"
+    ]
+  },
+  "id": "/subscriptions/c2974833-f9d6-49e2-b843-74513c83a919/providers/Microsoft.Authorization/policyDefinitions/ed850691-e28b-4725-bec1-ea1ffa74e446",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "ed850691-e28b-4725-bec1-ea1ffa74e446",
+  "systemData": {
+    "createdBy": "odl_user_268132@udacityhol.onmicrosoft.com",
+    "createdByType": "User",
+    "createdAt": "2024-09-29T07:04:35.0346896Z",
+    "lastModifiedBy": "odl_user_268132@udacityhol.onmicrosoft.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2024-09-29T07:04:35.0346896Z"
+  }
+}
