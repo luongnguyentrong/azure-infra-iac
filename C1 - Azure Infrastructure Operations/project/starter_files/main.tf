@@ -62,6 +62,20 @@ resource "azurerm_network_security_rule" "allow_load_balancer" {
   resource_group_name         = data.azurerm_resource_group.rg.name
 }
 
+resource "azurerm_network_security_rule" "deny_all" {
+  name                       = "deny-internet"
+  priority                   = 200
+  direction                  = "Inbound"
+  access                     = "Deny"
+  protocol                   = "*"
+  source_port_range          = "*"
+  destination_port_range     = "*"
+  source_address_prefix      = "*"
+  destination_address_prefix = "10.0.0.0/24"  
+  network_security_group_name = azurerm_network_security_group.nsg.name
+  resource_group_name         = data.azurerm_resource_group.rg.name
+}
+
 # Associate NSG with Subnet
 resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
   subnet_id                 = azurerm_subnet.subnet.id
